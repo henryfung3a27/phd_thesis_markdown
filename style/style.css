@@ -3,7 +3,8 @@ body {
     font-family: Georgia;
     max-width: 800px;
     margin: 0 auto;
-    line-height: 30px;
+    /*line-height: 30px;*/
+    line-height: 1.25;
     font-size: 18px;
     padding-left: 350px;
     padding-right: 50px;
