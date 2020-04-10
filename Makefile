@@ -49,7 +49,7 @@ tex:
 	-V documentclass=report \
 	-N \
 	--csl="$(STYLEDIR)/ref_format.csl" \
-	--latex-engine=xelatex
+	--pdf-engine=xelatex
 
 docx:
 	pandoc "$(INPUTDIR)"/*.md \
