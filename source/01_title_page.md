@@ -9,40 +9,37 @@ and add the centred logo
 
     % Delete the following line
     % to remove the UCL header logo
-    \ThisULCornerWallPaper{1.0}{style/univ_logo.eps}
-        
+        % Uncomment the following line
+        % to add a centered university logo
+        \includegraphics[width=1.0\textwidth]{style/univ_logo.eps}
+    
         \vspace*{2.5cm}
         
         \huge
-        This is the title of the thesis
+        Reverse engineering on FeliCa Authentication
         
         \vspace{1.5cm}
         
         \Large
-        Firstname Surname
+        Hoi Lam Fung
 
         \vspace{1.5cm}
 
         \normalsize
         A thesis presented for the degree of\\
-        Doctor of Philosophy
+        Bachelor of Science
         
         \vfill
         
         \normalsize
         Supervised by:\\
-        Professor Louis Fage\\
-        Captain J. Y. Cousteau
+        Dr. David Oswald
 
         \vspace{0.8cm}
-
-        % Uncomment the following line
-        % to add a centered university logo
-        % \includegraphics[width=0.4\textwidth]{style/univ_logo.eps}
         
         \normalsize
-        University College London, UK\\
-        January 2015
+        University of Birmingham, UK\\
+        March 2020
 
         % Except where otherwise noted, content in this thesis is licensed under a Creative Commons Attribution 4.0 License (http://creativecommons.org/licenses/by/4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly cited. Copyright 2015,Tom Pollard.
 

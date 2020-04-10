@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>wrapper_program.html</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+
+</head>
+
+<body>
+
+<p>TODO: Edit Appendix</p>
+
+<h2>Wrapper program</h2>
+
+<p>Since <code>rw.dll</code> is a library, it cannot be run directly. In order to debug
+<code>authentication_1</code> and examine the memory dump, I have created a wrapper
+program. This program tries to call a library exported function as follow:</p>
+
+<ol>
+<li>Load the library (<code>rw.dll</code>)</li>
+<li>Locate the address of a given function (<code>authentication_1</code>)</li>
+<li>Type cast the address to accept parameters (In <code>authentication_1</code>, there are 4)</li>
+<li>Call the function</li>
+</ol>
+
+
+<p>In debugger (x32dbg/OllyDbg), set a breakpoint in <code>main</code> and start stepping
+over instructions. When the program loads the <code>rw.dll</code>, the entry function
+is called in the library which does several initialisation and calls constructors.
+One of the constructors (<code>0x10012430</code>) is a global class located in <code>0x10073ed8</code>.
+This class is used throughout the library and will be discussed later.</p>
+
+<p><img src="img/snippet_ctor_10073ed8.png" alt="&quot;snippet_ctor_10073ed8&quot;" /></p>
+
+<p><em>A snippet of the constructor</em></p>
+
+<p>After that, the wrapper gets the address of <code>authentication_1</code>. This is achieved
+by looking up the exported functions table from <code>rw.dll</code>. Then, type-cast the
+address to a function that takes 4 arguments.</p>
+
+<p><code>c
+typedef void (__cdecl *pFunIIII)(int, int, int, int);
+// [...]
+HINSTANCE hGetProcIDDLL = LoadLibrary(TEXT("rw.dll"))
+FARPROC procAddr = GetProcAddress((HMODULE) hGetProcIDDLL, "authentication_1");
+pFunIIII func = (pFunIIII)procAddr;
+// [...]
+func(param_1, param_2, param_3, param_4);
+</code></p>
+
+<p>The code can be found in Appendix &hellip; TODO: Edit Appendix</p>
+
+<p>At a later stage of analysis, this wrapper program is not sufficient to examine
+the function. <code>authentication_1</code> has a lot of function calls within functions.
+It is not time efficient to analyse a particular function from the beginning,
+especially when the function is deep (i.e. it is being called after several jumps).
+Hence, I modified the wrapper function to not only calls exported function, but an
+address. Given an address, the wrapper can directly calls it.</p>
+
+</body>
+</html>

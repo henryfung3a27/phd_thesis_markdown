@@ -1,37 +1,32 @@
-# Introduction, with a citation
+# Introduction
 
 ## Background
 
-This is the introduction. Quisque finibus aliquet cursus. Integer in pellentesque tellus. Duis eu dignissim nulla, a porttitor enim. Quisque vehicula leo non ultrices finibus. Duis vehicula quis sem sit amet sollicitudin. Integer neque est, pharetra et auctor vel, iaculis interdum lectus.
+FeliCa is a contactless RFID smart card system developed by Sony in Japan. It can be used in several situations such as electronic payments and access control. It was first used in Octopus card system in 1997 in Hong Kong and was successful. People in Hong Kong are still using it for transportation and electronic payments. It was then used in other countries including Singapore, Japan and United States.
+
+## Aims of project
+
+The aim of the project is to analyse the authentication protocol by reverse engineering a function called `authentication_1` in a Dynamic-Link Library (DLL). It contains several function calls with reasonable amount of strings to hint what it is trying to achieve.
+
+## Background
+
+The authentication process of FeliCa has been a mist. In official documents, they only mention FeliCa uses mutual authentication to keep the communication secure and efficient. The transaction process, including encryption and authentication, takes only 0.1 second. ===== Ref{https://www.sony.net/Products/felica/about/scheme.html#scheme03} ===== However, the authentication does not entirely follow open standards. Sony has developed their own standard in terms of secure transaction. ==Ref== This makes researchers difficult to analyse the protocol. 
+
+Fortunately, there is a DLL called `rw.dll`, which perhaps stands for *read/write*. There are 132 exported functions and lots of other private helper functions. Exported functions can be called by name or ordinal after importing the library. Private helper functions can be called as well, but not by name or ordinal but by their offsets. This will be explained in later section. 
+
+
+## Abbreviations
+
+Common abbreviations are explained here.
+
+| Abbreviation | Meaning              |
+|:------------:|:--------------------:|
+| DLL          | Dynamic-Link Library |
+| RE           | Reverse Engineering  |
+
 
 <!-- 
 To include a reference, add the citation key shown in the references.bib file.
 -->
 
 To include a citation to the text, just add the citation key shown in the references.bib file. The style of the citation is determined by the ref_format.csl file. For example, in The Living Sea you can find pictures of the Calypso [@Cousteau1963].
-
-In neque mauris, maximus at sapien a, iaculis dignissim justo. Aliquam erat volutpat. Praesent varius risus auctor est ultricies, sit amet consequat nisi laoreet. Suspendisse non est et mauris pharetra sagittis non porta justo. Praesent malesuada metus ut sapien sodales ornare.
-
-## The middle bit
-
-This is the middle bit. Phasellus quis ex in ipsum pellentesque lobortis tincidunt sed massa. Nullam euismod sem quis dictum condimentum. Suspendisse risus metus, elementum eu congue quis, viverra ac metus. Donec non lectus at lectus euismod laoreet pharetra semper dui. Donec sed eleifend erat, vel ultrices nibh. Nam scelerisque turpis ac nunc mollis, et rutrum nisl luctus.
-
-Duis faucibus vestibulum elit, sit amet lobortis libero. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at cursus nibh. Sed accumsan imperdiet interdum. Proin id facilisis tortor. Proin posuere a neque nec iaculis. Suspendisse potenti. Nullam hendrerit ante mi, vitae iaculis dui laoreet eu.
-
-Cras eleifend velit diam, eu viverra mi volutpat ut. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec finibus leo nec dui imperdiet, tincidunt ornare orci venenatis. Maecenas placerat efficitur est, eu blandit magna hendrerit eu.
-
-### Subsection of the middle bit
-
-This is a subsection of the middle bit. Quisque sit amet tempus arcu, ac suscipit ante. Cras massa elit, pellentesque eget nisl ut, malesuada rutrum risus. Nunc in venenatis mi. Curabitur sit amet suscipit eros, non tincidunt nibh. Phasellus lorem lectus, iaculis non luctus eget, tempus non risus. Suspendisse ut felis mi.
-
-## Summary of chapters
-
-<!-- 
-For italic, add one * on either side of the text
-For bold, add two * on either side of the text
-For bold and italic, add _** on either side of the text
--->
-
-This is a brief outline of what went into each chapter. **Chapter 1** gives a background on duis tempus justo quis arcu consectetur sollicitudin.  **Chapter 2** discusses morbi sollicitudin gravida tellus in maximus.  **Chapter 3** discusses vestibulum eleifend turpis id turpis sollicitudin aliquet.  **Chapter 4** shows how phasellus gravida non ex id aliquet. Proin faucibus nibh sit amet augue blandit varius.
-
-
